@@ -1,0 +1,25 @@
+.indexbox {
+    height: 10px;
+    width: 10px;
+    background-color: #00b3ee;
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 50%;
+    margin: 1px;
+}
+
+.index-active {
+    background-color: #4cae4c;
+}
+
+#nextBtn, #prevBtn {
+    display: inline-block;
+}
+
+#nextBtn {
+    margin-left: 10px;
+}
+
+#prevBtn {
+    margin-right: 10px;
+}
