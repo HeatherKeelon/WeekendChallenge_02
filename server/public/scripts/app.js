@@ -1,12 +1,12 @@
 $(document).ready(function(){
 
-    callAjax();
+    callAjax();//Calls the functon that contains the asynchronous ajax data. Will wait for doc.ready to call.
 
 
 
 });
 var indexTracker=0;
-
+//Contains all of the data from ajax. On success, it will call the setUp function. Important to have, the setUp can now access the data from ajax.
 function callAjax() {
     $.ajax({
         type: "GET",
@@ -17,7 +17,8 @@ function callAjax() {
     });
 
 }
-
+//This function contains all of the information needed to update the carousel. Sets data as a parameter, which it gets from the ajax. Var studentArray pulls the array from the ajax data so that it can be accessed much easier via a single variable.
+//Function also creates the navigation buttons, and sets the content of #studentbox. Also allows studentArray to be passed to all of the other functions so that they can access the data content.
 function setUp(data){
     var studentsArray=data.zeta;
 
@@ -32,7 +33,7 @@ function setUp(data){
     });
 }
 
-
+//The content in #studentbox.
 function updateStudents(array){
     for (var i=0; i<array.length; i++) {
         if(indexTracker==i) {
@@ -49,6 +50,7 @@ function updateStudents(array){
 
 }
 
+//creates all divs within the #navigation. Set up so that the index buttons are between prev and next.
 function createNav (array){
     $("#navigation").append("<div id='prevBtn' class='btn btn-success'><</div>");
     createNavBtn(array);
@@ -56,7 +58,7 @@ function createNav (array){
 
 }
 
-
+//creates the index divs.
 function createNavBtn (array){
     for (var i=0; i<array.length; i++) {
         $("#navigation").append("<div class='indexbox' id='index" + i + "'></div");
@@ -65,6 +67,7 @@ function createNavBtn (array){
 
 }
 
+//updates index that carries the index-active class.
 function indexUpdate(array){
     for (var i=0;i<array.length; i++){
         $("#index" + i).removeClass("index-active");
@@ -76,6 +79,7 @@ function indexUpdate(array){
 
 }
 
+//The function called from the #nextbtn.on. Also calls updateStudents to update content of #studentbox.
 function nextSlide(array){
     indexTracker++;
     if(indexTracker>=array.length){
@@ -88,7 +92,7 @@ function nextSlide(array){
 
 }
 
-
+//Opposite of function nextSlide. 
 function prevSlide(array){
     indexTracker--
     if(indexTracker<0){
@@ -116,105 +120,3 @@ function prevSlide(array){
 
 
 
-//var indexTracker=0;
-//
-//$(document).ready(function(){
-//
-//    callAjax();
-//
-//    $("#navigation").append("<div id='prevBtn'>Prev</div>");
-//    $("#prevBtn").on('click', prevSlide);
-//    console.log(studentsArray);
-//    createNavBtn(studentsArray);
-//    $("#navigation").append("<div id='nextBtn'>Next</div>");
-//    $("#nextBtn").on('click', nextSlide);
-//    //indexUpdate();
-//
-//    });
-//
-//
-//
-//
-//
-////Initial student at index 0 is showing upon page load, but next button does not work because "property name of undefined" cannot be read.
-//
-////function callAjax () {
-////    $.ajax({
-////        type: "GET",
-////        url: "/data",
-////        success: function (data) {
-////            //makeWebpage(data) Idea at the very end once you get it working, try to the carousel function to call all of the other functions, then have this one call carousel.
-////
-////            studentsArray=data.zeta;
-////            appendDOM(studentsArray);
-////
-////
-////        }
-////    })
-////}
-////
-////
-////
-////function nextSlide(studentsArray){
-////    indexTracker++;
-////    if(indexTracker>=studentsArray.length){
-////        indexTracker=0;
-////    }
-////    console.log("forwards");
-////    //indexUpdate(studentsArray);
-////    console.log(indexTracker);
-////    console.log(studentsArray);
-////    callAjax();
-////
-////
-////}
-////
-////function createNavBtn (array){
-////   for (var i=0; i<array.length; i++) {
-////       $("#navigation").append("<div class='indexbox' id='index" + i + "'></div");
-////    }
-////
-////}
-////
-////function prevSlide(array){
-////    indexTracker--
-////    if(indexTracker<0){
-////        indexTracker=array.length -1;
-////    }
-////    indexUpdate(array);
-////    console.log("backwards");
-////}
-////
-////
-//////function indexUpdate(){//Do not see the shift in the index buttons. Check out css. Check to see if class is added.
-//////    for (var i=0;i<studentsArray.length; i++){
-//////        $("#index" + i).removeClass("index-active");
-//////
-//////        if(i==indexTracker){
-//////            $("#index" + i).addClass("index-active");
-//////        }
-//////    }
-//////
-//////}
-////
-////
-////function appendDOM(studentsArray){
-////    for (var i=0; i<studentsArray.length; i++) {
-////        if(indexTracker==i) {
-////            $("#studentbox").empty();
-////            $("#studentbox").append("<div></div>");
-////            var $el = $("#studentbox").children().last();
-////            $el.append("<p>" + studentsArray[indexTracker]["name"] + "</p>");
-////            $el.append("<p>" + studentsArray[indexTracker]["shoutout"] + "</p>");
-////            $el.append("<p>" + studentsArray[indexTracker]["github"] + "</p>");
-////
-////            $("#navigation").append("<div class='indexbox' id='index" + i + "'></div");
-////            $("#index" + (i-1)).removeClass("index-active");
-////
-////            if(i==indexTracker){
-////                $("#index" + i).addClass("index-active");
-////            }
-////        }
-////    }
-////
-//}
