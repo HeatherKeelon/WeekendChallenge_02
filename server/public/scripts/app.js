@@ -50,9 +50,9 @@ function updateStudents(array){
 }
 
 function createNav (array){
-    $("#navigation").append("<div id='prevBtn'><</div>");
+    $("#navigation").append("<div id='prevBtn' class='btn btn-success'><</div>");
     createNavBtn(array);
-    $("#navigation").append("<div id='nextBtn'>></div>");
+    $("#navigation").append("<div id='nextBtn' class='btn btn-success'>></div>");
 
 }
 
