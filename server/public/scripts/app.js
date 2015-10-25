@@ -26,15 +26,23 @@ function setUp(data){
     updateStudents(studentsArray);
 
     $("#navigation").on('click', '#nextBtn', function(){
-        nextSlide(studentsArray);
+        $("#studentbox").children().fadeOut(500, function(){
+            nextSlide(studentsArray);
+        });
+       // $("#studentbox").html($el).fadeIn(8000, function(){
+
     });
+
     $("#navigation").on('click', '#prevBtn', function(){
+        $("#studentbox").children().fadeOut(500, function(){
         prevSlide(studentsArray);
+        });
     });
 }
 
 //The content in #studentbox.
 function updateStudents(array){
+
     for (var i=0; i<array.length; i++) {
         if(indexTracker==i) {
             $("#studentbox").empty();
@@ -42,12 +50,12 @@ function updateStudents(array){
             var $el = $("#studentbox").children().last();
             var gitLink = array[indexTracker]["github"];
             var shout = array[indexTracker]["shoutout"];
+
             $el.append("<h3>Name: " + array[indexTracker]["name"] + "</h3>");
             $el.append("<p class='shoutout'>" + shout + "</p>");
             $el.append("<p class='address'>GitHub Address: <a href=gitLink>" + gitLink + "</a></p>");
         }
     }
-
 }
 
 //creates all divs within the #navigation. Set up so that the index buttons are between prev and next.
@@ -85,14 +93,19 @@ function nextSlide(array){
     if(indexTracker>=array.length){
         indexTracker=0;
     }
+
+
     console.log("forwards");
     indexUpdate(array);
     console.log(indexTracker);
-    updateStudents(array);
+
+    $("#studentbox").children().fadeIn(500, function(){
+        updateStudents(array);
+        });
 
 }
 
-//Opposite of function nextSlide. 
+//Opposite of function nextSlide.
 function prevSlide(array){
     indexTracker--
     if(indexTracker<0){
@@ -100,7 +113,9 @@ function prevSlide(array){
     }
     indexUpdate(array);
     console.log("backwards");
+    $("#studentbox").children().fadeIn(500, function(){
     updateStudents(array);
+    });
 }
 
 
