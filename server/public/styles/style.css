@@ -1,3 +1,8 @@
+body {
+    font-size: 16px;
+}
+
+
 .indexbox {
     height: 10px;
     width: 10px;
@@ -9,11 +14,15 @@
 }
 
 .index-active {
-    background-color: #4cae4c;
+    background-color: chartreuse;
 }
 
 #nextBtn, #prevBtn {
     display: inline-block;
+    background-color: chartreuse;
+    width: 50px;
+    text-align: center;
+    border: 1px solid black;
 }
 
 #nextBtn {
@@ -22,4 +31,37 @@
 
 #prevBtn {
     margin-right: 10px;
+}
+
+main {
+    display: block;
+    margin: 0 auto;
+    width: 740px;
+}
+
+#navigation{
+    width: 740px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+#studentbox{
+    width: 740px;
+    height: 200px;
+    text-align: center;
+    border: 1px solid black;
+    padding: 10px 10px 20px 10px;
+    margin: 5px;
+}
+
+.shoutout{
+    font-style: italic;
+}
+
+.address{
+    font-weight: bold;
+}
+
+a:hover {
+    color: chartreuse;
 }
