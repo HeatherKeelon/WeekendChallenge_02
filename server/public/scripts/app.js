@@ -26,17 +26,16 @@ function setUp(data){
     updateStudents(studentsArray);
 
     $("#navigation").on('click', '#nextBtn', function(){
-        $("#studentbox").children().fadeOut(500, function(){
+
             nextSlide(studentsArray);
         });
-       // $("#studentbox").html($el).fadeIn(8000, function(){
 
-    });
+
+
 
     $("#navigation").on('click', '#prevBtn', function(){
-        $("#studentbox").children().fadeOut(500, function(){
         prevSlide(studentsArray);
-        });
+
     });
 }
 
@@ -45,15 +44,18 @@ function updateStudents(array){
 
     for (var i=0; i<array.length; i++) {
         if(indexTracker==i) {
-            $("#studentbox").empty();
-            $("#studentbox").append("<div></div>");
             var $el = $("#studentbox").children().last();
             var gitLink = array[indexTracker]["github"];
             var shout = array[indexTracker]["shoutout"];
+            //$("#studentbox").append("<div></div>");
+            $("#studentbox").fadeOut(200, function(){
+                $("#studentbox").empty();
 
-            $el.append("<h3>Name: " + array[indexTracker]["name"] + "</h3>");
-            $el.append("<p class='shoutout'>" + shout + "</p>");
-            $el.append("<p class='address'>GitHub Address: <a href=gitLink>" + gitLink + "</a></p>");
+
+                $("#studentbox").append("<h3>Name: " + array[indexTracker]["name"] + "</h3>").hide().fadeIn();
+                $("#studentbox").append("<p class='shoutout'>" + shout + "</p>").hide().fadeIn();
+                $("#studentbox").append("<p class='address'>GitHub Address: <a href=gitLink>" + gitLink + "</a></p>").hide().fadeIn();
+            });
         }
     }
 }
@@ -99,9 +101,9 @@ function nextSlide(array){
     indexUpdate(array);
     console.log(indexTracker);
 
-    $("#studentbox").children().fadeIn(500, function(){
+   // $("#studentbox").children().fadeIn(500, function(){
         updateStudents(array);
-        });
+      //  });
 
 }
 
